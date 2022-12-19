@@ -10,13 +10,14 @@ const DB = process.env.DATABASE.replace(
     process.env.DATABASE_PASSWORD
 );
 
+mongoose.set('strictQuery', true);
+
 mongoose
-    .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-    })
-    .then(() => console.log("DB connection successful!"));
+    .connect(DB, 
+        err => {
+            if(err) throw err;
+            console.log("DB connection successful!");
+        });
 
 
 const port = process.env.PORT || 3000;
