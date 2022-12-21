@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
-
 const dotenv = require("dotenv");
 const app = require('./app');
+
+const { faker } = require('@faker-js/faker');
+const {User, Post, Code, Comment} = require('./schema');
 
 dotenv.config({path: './config.env'});
 
@@ -20,32 +22,52 @@ mongoose
         });
 
 
-const userProfileSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, 'A user must have a name']
-    }, 
-    username: {
-        type: String,
-        required: [true, 'A user must have a unique username'],
-        unique: true
-    }
-});
+for(let i=0; i < 10; i++) {
+    const user = new User({
+        firstname: faker.name.firstName(0),
+        lastname: faker.name.lastName(1),
+        registerDate: faker.date.recent(),
+        email: faker.internet.email(),
+        password: faker.internet.password()
+    })
+    user.save()
+    .then(() => {
+        console.log("Account created successfully");
+    });
 
-const UserProfile = mongoose.model('UserProfile', userProfileSchema);
+    const post = new Post({
+        caption: faker.hacker.phrase(),
+        img: faker.image.abstract(),
+        likes: faker.random.numeric()
+    });
+    post.save()
+    .then(() => {
+        console.log("Post saved successfully!");
+    });
 
-// const testUser = new UserProfile({
-//     name: "Controllah Gabi",
-//     username: "controllaahh5"
-// });
+    const code = new Code({
+        title: faker.name.jobTitle(),
+        created_at: faker.date.recent(),
+        likes: faker.random.numeric(),
+        code_body: faker.hacker.phrase(),
+        description: faker.hacker.phrase()
+    });
 
-// testUser
-//     .save()
-//     .then(doc => {
-//         console.log(doc);
-//     }).catch(err => {
-//         console.log('Error: ', err);
-//     })
+    code.save()
+    .then(() => {
+        console.log("Code saved successfully!");
+    });
+
+    const comment = new Comment({
+        created_at: faker.date.recent(),
+        body: faker.hacker.phrase(),
+        votes: faker.random.numeric()
+    });
+    comment.save()
+    .then(() => {
+        console.log("comment saved successfully!");
+    });
+};
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

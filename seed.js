@@ -1,7 +1,16 @@
-import { faker } from '@faker-js/faker';
-
-const randomName = faker.name.fullName();
-const randomEmail = faker.internet.email();
+// const { faker } = require('@faker-js/faker');
+// const Account = require('./schema');
 
 
-console.log(randomName, randomEmail);
+
+// for(let i=0; i < 10; i++) {
+//     const account = new Account({
+//         email: faker.internet.email(),
+//         password: faker.internet.password()
+//     })
+
+//     account.save()
+//     .then(() => {
+//         console.log("Account created successfully");
+//     });
+// };
