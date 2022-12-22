@@ -1,8 +1,8 @@
-const User = require('../models/user.model');
+const userModel = require('../models/userModel');
 
 module.exports = {
     postUser: (req, res) => {
-        let user = new User({
+        let user = new userModel({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
