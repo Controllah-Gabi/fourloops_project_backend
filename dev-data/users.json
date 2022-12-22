@@ -1,0 +1,37 @@
+[
+    {
+        "firstName" : "tom",
+        "lastName" : "Bear",
+        "register_date" : "07/11/2023",
+        "email" :"junorgbi@hotmail.co.uk", 
+        "password": "loosvideos"
+    },
+    {
+        "firstName" : "Heskey",
+        "lastName" : "Bear",
+        "register_date" : "07/11/2020",
+        "email" :"heskey@hotmail.co.uk",
+        "password": "loos_1768"
+    },
+    {
+        "firstName" : "Steve",
+        "lastName" : "Bear",
+        "register_date" : "07/11/2023",
+        "email" :"gbi@hotmail.co.uk",
+        "password": "loose videos"
+    },
+    {
+        "firstName" : "Joel",
+        "lastName" : "Bearuuu",
+        "register_date" : "07/11/2009", 
+        "email" :"joal_66@hotmail.co.uk",
+        "password": "ghuhhuij099988_77"
+    },
+    {
+        "firstName" : "Mathew",
+        "lastName" : "Berus",
+        "register_date" : "07/11/2000",
+        "email" :"berus_66@hotmail.co.uk",
+        "password": "ghB&88_77"
+    }
+]
