@@ -1,7 +1,17 @@
 const { postUser } = require("./controllers/userController");
 const express = require("express");
-const { postPost, getAllPosts, getPostByID } = require("./controllers/postController");
-const { postCode, getAllCodes, getCodeByID } = require("./controllers/codeController");
+const {
+  postPost,
+  getAllPosts,
+  getPostByID,
+  deletePost,
+} = require("./controllers/postController");
+const {
+  postCode,
+  getAllCodes,
+  getCodeByID,
+  deleteCode,
+} = require("./controllers/codeController");
 const app = express();
 
 //Middleware
@@ -18,5 +28,9 @@ app.get("/api/posts", getAllPosts);
 app.get("/api/codes", getAllCodes);
 app.get("/api/posts/:post_id", getPostByID);
 app.get("/api/codes/:code_id", getCodeByID);
+
+//delete
+app.delete("/api/posts/:post_id", deletePost);
+app.delete("/api/codes/:code_id", deleteCode);
 
 module.exports = app;
