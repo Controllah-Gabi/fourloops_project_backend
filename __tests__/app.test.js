@@ -79,7 +79,7 @@ describe("POST /api/codes", () => {
   });
 });
 
-describe.only("GET /api/posts", () => {
+describe("GET /api/posts", () => {
   test("status - 200, an array of post objects", () => {
     return request(app)
       .get("/api/posts")
@@ -176,10 +176,34 @@ describe("DELETE /api/codes/:code_id", () => {
   });
 });
 
-describe.only("DELETE /api/posts/:post_id", () => {
+describe("DELETE /api/posts/:post_id", () => {
   test("status - 200, request successfully fulfilled", () => {
     return request(app)
       .delete("/api/posts/63a5799705e02a0a9eb957f0")
       .expect(200);
+  });
+});
+
+describe("POST /api/posts/:post_id/comments", () => {
+  test("POST: 200 - returns an object containing the new comment", () => {
+    const newComment = {
+      body: "This is well good matey",
+      type: "post",
+    };
+    return request(app)
+      .post("/api/posts/63a57c87dba9c096147a7753/comments")
+      .send(newComment)
+      .expect(200)
+      .then(({ body }) => {
+        console.log(body);
+        expect(body.result).toMatchObject({
+          _id: expect.any(String),
+          body: expect.any(String),
+          type: expect.any(String),
+          post_id: expect.any(String),
+          created_at: expect.any(String),
+          votes: expect.any(Number),
+        });
+      });
   });
 });
