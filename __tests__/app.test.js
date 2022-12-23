@@ -3,7 +3,7 @@ const db = require("../server");
 const app = require("../app");
 
 afterAll(() => {
-    if(db.end) db.end()
+  if (db.end) db.end();
 });
 
 describe(" POST /api/users", () => {
@@ -79,7 +79,7 @@ describe("POST /api/codes", () => {
   });
 });
 
-describe("GET /api/posts", () => {
+describe.only("GET /api/posts", () => {
   test("status - 200, an array of post objects", () => {
     return request(app)
       .get("/api/posts")
@@ -110,40 +110,39 @@ describe("GET /api/posts/:post_id", () => {
       .expect(200)
       .then(({ body }) => {
         console.log(body.result);
-          expect(body.result).toEqual(
-            expect.objectContaining({
-              _id: expect.any(String),
-              caption: expect.any(String),
-              img: expect.any(String),
-              likes: expect.any(Number),
-              created_at: expect.any(String),
-            })
-          );
-        });
+        expect(body.result).toEqual(
+          expect.objectContaining({
+            _id: expect.any(String),
+            caption: expect.any(String),
+            img: expect.any(String),
+            likes: expect.any(Number),
+            created_at: expect.any(String),
+          })
+        );
       });
-  })
+  });
+});
 
-  describe.only("GET /api/codes/:code_id", () => {
-    test("status - 200, an array of post objects", () => {
-      return request(app)
-        .get("/api/codes/63a57c87dba9c096147a7755")
-        .expect(200)
-        .then(({ body }) => {
-          console.log(body.result);
-            expect(body.result).toEqual(
-              expect.objectContaining({
-                _id: expect.any(String),
-                description: expect.any(String),
-                code_body: expect.any(String),
-                likes: expect.any(Number),
-                created_at: expect.any(String),
-                title: expect.any(String),
-              })
-            );
-          });
-        });
-    });
-
+describe("GET /api/codes/:code_id", () => {
+  test("status - 200, an array of post objects", () => {
+    return request(app)
+      .get("/api/codes/63a57c87dba9c096147a7755")
+      .expect(200)
+      .then(({ body }) => {
+        console.log(body.result);
+        expect(body.result).toEqual(
+          expect.objectContaining({
+            _id: expect.any(String),
+            description: expect.any(String),
+            code_body: expect.any(String),
+            likes: expect.any(Number),
+            created_at: expect.any(String),
+            title: expect.any(String),
+          })
+        );
+      });
+  });
+});
 
 describe("GET /api/codes", () => {
   test("status - 200, an array of code objects", () => {
@@ -166,5 +165,21 @@ describe("GET /api/codes", () => {
           );
         });
       });
+  });
+});
+
+describe("DELETE /api/codes/:code_id", () => {
+  test("status - 204, request successfully fulfilled", () => {
+    return request(app)
+      .delete("/api/codes/63a5799705e02a0a9eb957f2")
+      .expect(204);
+  });
+});
+
+describe.only("DELETE /api/posts/:post_id", () => {
+  test("status - 200, request successfully fulfilled", () => {
+    return request(app)
+      .delete("/api/posts/63a5799705e02a0a9eb957f0")
+      .expect(200);
   });
 });

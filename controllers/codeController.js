@@ -19,7 +19,7 @@ module.exports = {
       });
   },
   getAllCodes: (req, res) => {
-   codeSchema
+    codeSchema
       .find()
       .then((result) => {
         if (!result) res.json({ success: false, result: "No results found" });
@@ -27,14 +27,22 @@ module.exports = {
       })
       .catch((err) => res.json({ success: false, result: err }));
   },
-  getCodeByID: (req,res)=>{
+  getCodeByID: (req, res) => {
     codeSchema
-    .findOne({code_id:req.params.post_id})
-    .then((result)=>{
-      if (!result) res.json({ success: false, result: "No results found" });
+      .findOne({ code_id: req.params.post_id })
+      .then((result) => {
+        if (!result) res.json({ success: false, result: "No results found" });
         res.json({ success: true, result: result });
       })
       .catch((err) => res.json({ success: false, result: err }));
-  }
+  },
+  deleteCode: (req, res) => {
+    codeSchema
+      .findOneAndDelete({ code_id: req.params.code_id })
+      .then((result) => {
+        if (!result) res.json({ success: false, result: "No results found" });
+        res.json({ success: true, result: null });
+      })
+      .catch((err) => res.json({ success: false, result: err }));
+  },
 };
-

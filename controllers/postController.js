@@ -18,7 +18,7 @@ module.exports = {
       });
   },
   getAllPosts: (req, res) => {
-   postSchema
+    postSchema
       .find()
       .then((result) => {
         if (!result) res.json({ success: false, result: "No results found" });
@@ -26,14 +26,22 @@ module.exports = {
       })
       .catch((err) => res.json({ success: false, result: err }));
   },
-  getPostByID: (req,res)=>{
+  getPostByID: (req, res) => {
     postSchema
-    .findOne({post_id:req.params.post_id})
-    .then((result)=>{
-      if (!result) res.json({ success: false, result: "No results found" });
+      .findOne({ post_id: req.params.post_id })
+      .then((result) => {
+        if (!result) res.json({ success: false, result: "No results found" });
         res.json({ success: true, result: result });
       })
       .catch((err) => res.json({ success: false, result: err }));
-  }
-  
-}
+  },
+  deletePost: (req, res) => {
+    postSchema
+      .findOneAndDelete({ post_id: req.params.post_id })
+      .then((result) => {
+        if (!result) res.json({ success: false, result: "No results found" });
+        res.json({ success: true, result: null });
+      })
+      .catch((err) => res.json({ success: false, result: err }));
+  },
+};
