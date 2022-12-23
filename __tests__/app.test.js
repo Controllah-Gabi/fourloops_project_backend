@@ -2,9 +2,9 @@ const request = require("supertest");
 const db = require("../server");
 const app = require("../app");
 
-// afterAll(() => {
-//     return db.end();
-// });
+afterAll(() => {
+    if(db.end) db.end()
+});
 
 describe(" POST /api/users", () => {
   test("POST: 200 - returns an object containing the new user", () => {
@@ -102,6 +102,48 @@ describe("GET /api/posts", () => {
       });
   });
 });
+
+describe("GET /api/posts/:post_id", () => {
+  test("status - 200, an array of post objects", () => {
+    return request(app)
+      .get("/api/posts/63a57c4e1fc4ad263a4adf36")
+      .expect(200)
+      .then(({ body }) => {
+        console.log(body.result);
+          expect(body.result).toEqual(
+            expect.objectContaining({
+              _id: expect.any(String),
+              caption: expect.any(String),
+              img: expect.any(String),
+              likes: expect.any(Number),
+              created_at: expect.any(String),
+            })
+          );
+        });
+      });
+  })
+
+  describe.only("GET /api/codes/:code_id", () => {
+    test("status - 200, an array of post objects", () => {
+      return request(app)
+        .get("/api/codes/63a57c87dba9c096147a7755")
+        .expect(200)
+        .then(({ body }) => {
+          console.log(body.result);
+            expect(body.result).toEqual(
+              expect.objectContaining({
+                _id: expect.any(String),
+                description: expect.any(String),
+                code_body: expect.any(String),
+                likes: expect.any(Number),
+                created_at: expect.any(String),
+                title: expect.any(String),
+              })
+            );
+          });
+        });
+    });
+
 
 describe("GET /api/codes", () => {
   test("status - 200, an array of code objects", () => {
