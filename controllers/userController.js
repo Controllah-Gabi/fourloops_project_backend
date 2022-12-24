@@ -1,8 +1,8 @@
-const userModel = require('../models/userModel');
+const User = require('../models/userModel');
 
 module.exports = {
     postUser: (req, res) => {
-        let user = new userModel({
+        let user = new User({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
@@ -10,10 +10,10 @@ module.exports = {
         });
         user.save()
             .then(result => {
-                res.json({ success: true, result: result});
+                res.json({ status: 201, result: result});
             })
             .catch(err => {
-                res.json({success: false, result: err});
+                res.json({status: 400, result: err});
             });
     }
 };
