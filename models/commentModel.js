@@ -9,4 +9,5 @@ const CommentSchema = new Schema({
   votes: { type: Number, required: true, default: 0 },
 });
 
-module.exports = mongoose.model("comment", CommentSchema);
+const Comment = mongoose.model("Comment", CommentSchema);
+module.exports = Comment;

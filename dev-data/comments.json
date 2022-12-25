@@ -1,0 +1,37 @@
+[
+    {
+        "body": "nee naw",
+        "type": "code",
+        "post_id": "6",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "420"
+    },
+    {
+        "body": "wonderful wonderful Copenhagen",
+        "type": "code",
+        "post_id": "7",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "123456789"
+    },
+    {
+        "body": "There's music in the air today",
+        "type": "post",
+        "post_id": "8",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "500"
+    },
+    {
+        "body": "frankly my dear, I don't",
+        "type": "code",
+        "post_id": "9",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "45"
+    },
+    {
+        "body": "swashbuckler",
+        "type": "post",
+        "post_id": "10",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "12"
+    }
+]

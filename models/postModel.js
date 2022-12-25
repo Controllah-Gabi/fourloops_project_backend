@@ -8,4 +8,5 @@ const PostSchema = new Schema({
   created_at: { type: String, required: true, default: new Date() },
 });
 
-module.exports = mongoose.model("post", PostSchema);
+const Post = mongoose.model("Post", PostSchema);
+module.exports = Post;

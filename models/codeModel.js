@@ -9,4 +9,5 @@ const CodeSchema = new Schema({
   title: { type: String, required: true, default: "Title" },
 });
 
-module.exports = mongoose.model("code", CodeSchema);
+const Code = mongoose.model("Code", CodeSchema)
+module.exports = Code;
