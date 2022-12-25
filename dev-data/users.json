@@ -1,31 +1,31 @@
 [
     {
-        "firstName" : "tom",
-        "lastName" : "Bear",
+        "firstname" : "tom",
+        "lastname" : "Bear",
         "email" :"junorgbi@hotmail.co.uk", 
         "password": "loosvideos"
     },
     {
-        "firstName" : "Heskey",
-        "lastName" : "Bear",
+        "firstname" : "Heskey",
+        "lastname" : "Bear",
         "email" :"heskey@hotmail.co.uk",
         "password": "loos_1768"
     },
     {
-        "firstName" : "Steve",
-        "lastName" : "Bear",
+        "firstname" : "Steve",
+        "lastname" : "Bear",
         "email" :"gbi@hotmail.co.uk",
         "password": "loose videos"
     },
     {
-        "firstName" : "Joel",
-        "lastName" : "Bearuuu", 
+        "firstname" : "Joel",
+        "lastname" : "Bearuuu", 
         "email" :"joal_66@hotmail.co.uk",
         "password": "ghuhhuij099988_77"
     },
     {
-        "firstName" : "Mathew",
-        "lastName" : "Berus",
+        "firstname" : "Mathew",
+        "lastname" : "Berus",
         "email" :"berus_66@hotmail.co.uk",
         "password": "ghB&88_77"
     }

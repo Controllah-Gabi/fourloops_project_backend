@@ -1,8 +1,8 @@
-const commentModel = require("../models/commentModel");
+const Comment = require("../models/commentModel");
 
 module.exports = {
   postComment: (req, res) => {
-    let comment = new commentModel({
+    let comment = new Comment({
       body: req.body.body,
       type: req.url.slice(5, 9),
       post_id: req.params.post_id,
@@ -12,10 +12,10 @@ module.exports = {
     comment
       .save()
       .then((result) => {
-        res.json({ success: true, result: result });
+        res.json({ status: 201, result: result });
       })
       .catch((err) => {
-        res.json({ success: false, result: err });
+        res.json({ status: 400, result: err });
       });
   },
 };

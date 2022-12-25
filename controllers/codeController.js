@@ -1,8 +1,8 @@
-const codeSchema = require("../models/codeModel");
+const Code = require("../models/codeModel");
 
 module.exports = {
   postCode: (req, res) => {
-    let code = new codeSchema({
+    let code = new Code({
       description: req.body.description,
       code_body: req.body.code_body,
       likes: req.body.likes,
@@ -12,14 +12,14 @@ module.exports = {
     code
       .save()
       .then((result) => {
-        res.json({ success: true, result: result });
+        res.json({ status: 201, result: result });
       })
       .catch((err) => {
-        res.json({ success: false, result: err });
+        res.json({ status: 400, result: err });
       });
   },
   getAllCodes: (req, res) => {
-    codeSchema
+    Code
       .find()
       .then((result) => {
         if (!result) res.json({ success: false, result: "No results found" });
@@ -28,7 +28,7 @@ module.exports = {
       .catch((err) => res.json({ success: false, result: err }));
   },
   getCodeByID: (req, res) => {
-    codeSchema
+    Code
       .findOne({ code_id: req.params.post_id })
       .then((result) => {
         if (!result) res.json({ success: false, result: "No results found" });
@@ -37,7 +37,7 @@ module.exports = {
       .catch((err) => res.json({ success: false, result: err }));
   },
   deleteCode: (req, res) => {
-    codeSchema
+    Code
       .findOneAndDelete({ code_id: req.params.code_id })
       .then((result) => {
         if (!result) res.json({ success: false, result: "No results found" });

@@ -1,8 +1,8 @@
-const postSchema = require("../models/postModel");
+const Post = require("../models/postModel");
 
 module.exports = {
   postPost: (req, res) => {
-    let post = new postSchema({
+    let post = new Post({
       caption: req.body.caption,
       img: req.body.img,
       likes: req.body.likes,
@@ -11,14 +11,14 @@ module.exports = {
     post
       .save()
       .then((result) => {
-        res.json({ success: true, result: result });
+        res.json({ status: 201, result: result });
       })
       .catch((err) => {
-        res.json({ success: false, result: err });
+        res.json({ status: 400, result: err });
       });
   },
   getAllPosts: (req, res) => {
-    postSchema
+    Post
       .find()
       .then((result) => {
         if (!result) res.json({ success: false, result: "No results found" });
@@ -27,7 +27,7 @@ module.exports = {
       .catch((err) => res.json({ success: false, result: err }));
   },
   getPostByID: (req, res) => {
-    postSchema
+    Post
       .findOne({ post_id: req.params.post_id })
       .then((result) => {
         if (!result) res.json({ success: false, result: "No results found" });
@@ -36,7 +36,7 @@ module.exports = {
       .catch((err) => res.json({ success: false, result: err }));
   },
   deletePost: (req, res) => {
-    postSchema
+    Post
       .findOneAndDelete({ post_id: req.params.post_id })
       .then((result) => {
         if (!result) res.json({ success: false, result: "No results found" });
