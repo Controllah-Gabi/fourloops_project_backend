@@ -1,7 +1,7 @@
 const Post = require("../models/postModel");
 
 module.exports = {
-  postPost: (req, res) => {
+  addPost: (req, res) => {
     let post = new Post({
       caption: req.body.caption,
       img: req.body.img,

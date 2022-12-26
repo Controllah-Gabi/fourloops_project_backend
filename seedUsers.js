@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const dotenv = require('dotenv');
-const Code = require('./models/codeModel');
-const Post = require('./models/postModel');
+const User = require('./models/userModel');
 
 dotenv.config({path: './config.env'});
 
@@ -18,15 +17,11 @@ mongoose
         });
 
 //Read the file
-const codes = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/codes.json`, 'utf-8'));
-const posts = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/posts.json`, 'utf-8'));
+const users = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/users.json`, 'utf-8'));
 
 const seedDB = async () => {
-    await Code.deleteMany();
-    await Code.insertMany(codes)
-
-    await Post.deleteMany();
-    await Post.insertMany(posts);
+    await User.deleteMany();
+    await User.insertMany(users);
 };
 
 seedDB().then(() => {
