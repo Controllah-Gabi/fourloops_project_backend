@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const Post = require('../models/postModel');
 
 const request = require("supertest");
 const app = require("../app");
@@ -16,7 +17,7 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe(" POST /api/users", () => {
+describe.skip(" POST /api/users", () => {
   test("POST: 201 - returns an object containing the new user", async () => {
     const newUser = {
       firstname: "Joel",
@@ -37,57 +38,44 @@ describe(" POST /api/users", () => {
       email: expect.any(String),
       password: expect.any(String)
     });
-
   });
 });
 
-// describe("POST /api/posts", () => {
-//   test("POST: 201 - returns an object containing the new post", () => {
-//     const newPost = {
-//       caption: "This is a picture I drew",
-//       img: "https://blogs-images.forbes.com/trevornace/files/2016/05/mount-doom.gif",
-//     };
-//     return request(app)
-//       .post("/api/posts")
-//       .send(newPost)
-//       .expect(200)
-//       .then(({ body }) => {
-//         console.log(body);
-//         expect(body.result).toMatchObject({
-//           _id: expect.any(String),
-//           caption: expect.any(String),
-//           img: expect.any(String),
-//           likes: expect.any(Number),
-//           created_at: expect.any(String),
-//         });
-//       });
-//   });
-// });
+describe("POST /api/posts", () => {
+  test("POST: 201 - returns an object containing the new post", async () => {
+    const newPost = {
+      caption: "This is a picture I drew",
+      img: "https://blogs-images.forbes.com/trevornace/files/2016/05/mount-doom.gif",
+    };
+    const res = await request(app).post("/api/posts").send(newPost);
+    expect(res.body.status).toBe(201);
+    expect(res.body.result).toMatchObject({
+      caption: expect.any(String),
+      img: expect.any(String), 
+      likes: expect.any(Number),
+      created_at: expect.any(String)
+    });
+  });
+});
 
-// describe("POST /api/codes", () => {
-//   test("POST: 200 - returns an object containing the new code", () => {
-//     const newCode = {
-//       description: "This is a code I coded",
-//       code_body: "const Stephen = 'da best'",
-//       title: "Best code mate",
-//     };
-//     return request(app)
-//       .post("/api/codes")
-//       .send(newCode)
-//       .expect(200)
-//       .then(({ body }) => {
-//         console.log(body);
-//         expect(body.result).toMatchObject({
-//           _id: expect.any(String),
-//           description: expect.any(String),
-//           code_body: expect.any(String),
-//           likes: expect.any(Number),
-//           created_at: expect.any(String),
-//           title: expect.any(String),
-//         });
-//       });
-//   });
-// });
+describe("POST /api/codes", () => {
+  test("POST: 201 - returns an object containing the new code", async () => {
+    const newCode = {
+      title: "The rest operator",
+      description: "Creating a shallow copy of an array or object",
+      code_body: "[...rest operator] / {...prevObject}"
+    };
+    const res = await request(app).post("/api/codes").send(newCode);
+    expect(res.body.status).toBe(201);
+    expect(res.body.result).toMatchObject({
+      title: expect.any(String),
+      description: expect.any(String),
+      code_body: expect.any(String),
+      likes: expect.any(Number),
+      created_at: expect.any(String)
+    });
+  });
+});
 
 // describe("GET /api/posts", () => {
 //   test("status - 200, an array of post objects", () => {

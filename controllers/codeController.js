@@ -3,11 +3,11 @@ const Code = require("../models/codeModel");
 module.exports = {
   postCode: (req, res) => {
     let code = new Code({
+      title: req.body.title,
       description: req.body.description,
       code_body: req.body.code_body,
       likes: req.body.likes,
-      created_at: req.body.created_at,
-      title: req.body.title,
+      created_at: req.body.created_at
     });
     code
       .save()
