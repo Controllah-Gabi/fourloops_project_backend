@@ -1,0 +1,37 @@
+[
+    {   
+        "user_id": "63a9a784b748f1a31bc2413c",
+        "body": "nee naw",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "420",
+        "code_id": "63a9a784b748f1a31bc24135"
+    },
+    {
+        "user_id": "63a9a784b748f1a31bc2413d",
+        "body": "wonderful wonderful Copenhagen",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "123456789",
+        "code_id": "63a9a784b748f1a31bc24136"
+    },
+    {   
+        "user_id": "63a9a784b748f1a31bc2413e",
+        "body": "There's music in the air today",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "500",
+        "code_id": "63a9a784b748f1a31bc24137"
+    },
+    {   
+        "user_id": "63a9a784b748f1a31bc2413f",
+        "body": "frankly my dear, I don't",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "45",
+        "code_id": "63a9a784b748f1a31bc24138"
+    },
+    {   
+        "user_id": "63a9a784b748f1a31bc24140",
+        "body": "swashbuckler",
+        "created_at": "12/12/5000, 09:09",
+        "votes": "12",
+        "code_id": "63a9a784b748f1a31bc24139"
+    }
+]

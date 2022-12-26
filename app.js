@@ -12,7 +12,7 @@ const {
   getCodeByID,
   deleteCode,
 } = require("./controllers/codeController");
-const { postComment } = require("./controllers/commentController");
+// const { postComment } = require("./controllers/commentController");
 const app = express();
 
 //Middleware
@@ -23,7 +23,7 @@ app.use(express.json());
 app.post("/api/users", postUser);
 app.post("/api/posts", postPost);
 app.post("/api/codes", postCode);
-app.post("/api/posts/:post_id/comments", postComment);
+// app.post("/api/posts/:post_id/comments", postComment);
 
 //get
 app.get("/api/posts", getAllPosts);
