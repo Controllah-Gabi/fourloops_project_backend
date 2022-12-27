@@ -77,49 +77,37 @@ describe("POST /api/codes", () => {
   });
 });
 
-// describe("GET /api/posts", () => {
-//   test("status - 200, an array of post objects", () => {
-//     return request(app)
-//       .get("/api/posts")
-//       .expect(200)
-//       .then(({ body }) => {
-//         console.log(body.result);
+describe("GET /api/posts", () => {
+  test("status - 200, an array of post objects", async () => {
+    const res = await request(app).get("/api/posts");
+    expect(res.body.status).toBe(200);
+    expect(res.body.result).toBeInstanceOf(Array);
+    res.body.result.forEach((post) => {
+      expect(post).toMatchObject({
+        _id: expect.any(String),
+        caption: expect.any(String),
+        img: expect.any(String),
+        likes: expect.any(Number),
+        created_at: expect.any(String),
+      });
+    });
+  });
+});
 
-//         expect(body.result).toBeInstanceOf(Array);
-//         body.result.forEach((post) => {
-//           expect(post).toEqual(
-//             expect.objectContaining({
-//               _id: expect.any(String),
-//               caption: expect.any(String),
-//               img: expect.any(String),
-//               likes: expect.any(Number),
-//               created_at: expect.any(String),
-//             })
-//           );
-//         });
-//       });
-//   });
-// });
-
-// describe("GET /api/posts/:post_id", () => {
-//   test("status - 200, an array of post objects", () => {
-//     return request(app)
-//       .get("/api/posts/63a57c4e1fc4ad263a4adf36")
-//       .expect(200)
-//       .then(({ body }) => {
-//         console.log(body.result);
-//         expect(body.result).toEqual(
-//           expect.objectContaining({
-//             _id: expect.any(String),
-//             caption: expect.any(String),
-//             img: expect.any(String),
-//             likes: expect.any(Number),
-//             created_at: expect.any(String),
-//           })
-//         );
-//       });
-//   });
-// });
+describe("GET /api/posts/:post_id", () => {
+  test("status - 200, an array of post objects", async () => {
+    const res = await request(app).get("/api/posts/63aa1c66391f481b9deddcb9")
+    expect(res.body.status).toBe(200);
+    expect(res.body.result).toMatchObject({
+      _id: expect.any(String),
+      caption: expect.any(String),
+      img: expect.any(String),
+      likes: expect.any(Number),
+      created_at: expect.any(String),
+      user_id: expect.any(String)
+    })
+  });
+});
 
 // describe("GET /api/codes/:code_id", () => {
 //   test("status - 200, an array of post objects", () => {
