@@ -8,9 +8,13 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 module.exports = {
   changePassword: async (req, res) => {
-    const { newPassword, token } = req.body;
+    const { newPassword } = req.body;
+    const { token } = req.cookies;
 
-    try {
+    if(!token) {
+      return res.json({status: 403, result: "Forbidden!"})
+    } else {
+      try {
         const user = jwt.verify(token, JWT_SECRET);
         const _id = user.id;
 
@@ -22,8 +26,9 @@ module.exports = {
             }
         );
         return res.json({status: 201, result: "Password changed successfully!"})
-    } catch (error) {
-        return res.json({status: 400, result: error})
+      } catch (error) {
+          return res.json({status: 400, result: error})
+      }
     }
   }
 };

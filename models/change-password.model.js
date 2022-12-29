@@ -7,10 +7,6 @@ const changePasswordSchema = new Schema({
     type: String,
     required: true,
     trim: true
-  },
-  token: {
-    type: String,
-    required: true
   }
 });
 
