@@ -1,13 +1,12 @@
-const User = require('../models/userModel');
-const Post = require('../models/postModel');
+const User = require("../models/signUp.model");
+const Post = require("../models/postModel");
 
 const request = require("supertest");
 const app = require("../app");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-dotenv.config({path: `${__dirname}/../config.env`});
-mongoose.set('strictQuery', true);
-
+dotenv.config({ path: `${__dirname}/../config.env` });
+mongoose.set("strictQuery", true);
 
 beforeEach(async () => {
   await mongoose.connect(process.env.DATABASE);
@@ -17,26 +16,21 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe.skip(" POST /api/users", () => {
+describe.only(" POST /api/register-user", () => {
   test("POST: 201 - returns an object containing the new user", async () => {
     const newUser = {
       firstname: "Joel",
       lastname: "Aliyu",
-      email: "joelaliyu6@gmail.com",
-      password: "joeldcrew345",
+      email: "joelaliyu1@gmail.com",
+      password: "joelali5",
     };
-    const res = await request(app).post('/api/users').send(newUser);
-    const user = await User.findOne({ email: "joelaliyu6@gmail.com" });
-    expect(user.firstname).toBeTruthy()
-    expect(user.lastname).toBeTruthy()
-    expect(user.email).toBeTruthy()
-    expect(user.password).toBeTruthy()
+    const res = await request(app).post("/api/register-user").send(newUser);
     expect(res.body.status).toBe(201);
     expect(res.body.result).toMatchObject({
       firstname: expect.any(String),
-      lastname: expect.any(String), 
+      lastname: expect.any(String),
       email: expect.any(String),
-      password: expect.any(String)
+      password: expect.any(String),
     });
   });
 });
@@ -51,9 +45,9 @@ describe("POST /api/posts", () => {
     expect(res.body.status).toBe(201);
     expect(res.body.result).toMatchObject({
       caption: expect.any(String),
-      img: expect.any(String), 
+      img: expect.any(String),
       likes: expect.any(Number),
-      created_at: expect.any(String)
+      created_at: expect.any(String),
     });
   });
 });
@@ -63,7 +57,7 @@ describe("POST /api/codes", () => {
     const newCode = {
       title: "The rest operator",
       description: "Creating a shallow copy of an array or object",
-      code_body: "[...rest operator] / {...prevObject}"
+      code_body: "[...rest operator] / {...prevObject}",
     };
     const res = await request(app).post("/api/codes").send(newCode);
     expect(res.body.status).toBe(201);
@@ -72,7 +66,7 @@ describe("POST /api/codes", () => {
       description: expect.any(String),
       code_body: expect.any(String),
       likes: expect.any(Number),
-      created_at: expect.any(String)
+      created_at: expect.any(String),
     });
   });
 });
@@ -96,7 +90,7 @@ describe("GET /api/posts", () => {
 
 describe("GET /api/posts/:post_id", () => {
   test("status - 200, an array of post objects", async () => {
-    const res = await request(app).get("/api/posts/63aa1c66391f481b9deddcb9")
+    const res = await request(app).get("/api/posts/63aa1c66391f481b9deddcb9");
     expect(res.body.status).toBe(200);
     expect(res.body.result).toMatchObject({
       _id: expect.any(String),
@@ -104,8 +98,8 @@ describe("GET /api/posts/:post_id", () => {
       img: expect.any(String),
       likes: expect.any(Number),
       created_at: expect.any(String),
-      user_id: expect.any(String)
-    })
+      user_id: expect.any(String),
+    });
   });
 });
 

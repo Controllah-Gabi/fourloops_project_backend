@@ -24,15 +24,6 @@ module.exports = {
       if(err) console.log(err);
       res.json({status: 200, result: result});
     });
-    // const result = Post.aggregate([{
-    //   $lookup: {
-    //     from: 'users',
-    //     localField: 'user_id',
-    //     foreignField: '_id',
-    //     user: 'user'
-    //   }
-    // }]);
-    // res.json({status: 200, result: result});
   },
   //GET A SINGLE POST BASED ON ITS ID
   getPostByID: (req, res) => {

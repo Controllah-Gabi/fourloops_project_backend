@@ -1,4 +1,6 @@
-const { postUser } = require("./controllers/userController");
+const { postUser } = require("./controllers/signUp.controller");
+const { signin } = require("./controllers/signIn.controller");
+const {changePassword} = require("./controllers/change-password.controller");
 const express = require("express");
 const {
   addPost,
@@ -19,7 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //post
-app.post("/api/users", postUser);
+app.post("/api/register-user", postUser);
+app.post("/api/signin", signin);
+app.post("/api/change-password", changePassword);
 app.post("/api/posts", addPost);
 app.post("/api/codes", postCode);
 
