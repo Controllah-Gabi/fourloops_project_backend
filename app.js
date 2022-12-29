@@ -1,5 +1,7 @@
+const cookieParser = require("cookie-parser");
 const { postUser } = require("./controllers/signUp.controller");
 const { signin } = require("./controllers/signIn.controller");
+const { signout } = require("./controllers/signout.controller");
 const {changePassword} = require("./controllers/change-password.controller");
 const express = require("express");
 const {
@@ -19,10 +21,12 @@ const app = express();
 //Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 //post
 app.post("/api/register-user", postUser);
 app.post("/api/signin", signin);
+app.post("/api/signout", signout);
 app.post("/api/change-password", changePassword);
 app.post("/api/posts", addPost);
 app.post("/api/codes", postCode);
