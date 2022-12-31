@@ -7,7 +7,7 @@ module.exports = {
       firstname,
       lastname,
       email,
-      password: plainTextPassword,
+      password:plainTextPassword,
     } = req.body;
     const password = await bycrypt.hash(plainTextPassword, 10);
     let user = await new User({

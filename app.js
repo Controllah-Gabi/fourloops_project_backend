@@ -36,7 +36,6 @@ app.get("/api/posts", getAllPosts);
 app.get("/api/codes", getAllCodes);
 app.get("/api/posts/:post_id", getPostByID);
 app.get("/api/codes/:code_id", getCodeByID);
-//app.get("/api/users/:user_id", ...);
 
 //delete
 app.delete("/api/posts/:post_id", deletePost);
