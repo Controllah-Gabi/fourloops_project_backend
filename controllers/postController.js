@@ -70,7 +70,7 @@ module.exports = {
 
   //DELETE A SINGLE POST
   deletePost: (req, res) => {
-    Post.findOneAndDelete({ post_id: req.params.post_id })
+    Post.findOneAndDelete({ post_id: req.param.post_id })
       .then((result) => {
         if (!result) res.json({ success: false, result: "No results found" });
         res.json({ success: true, result: null });
