@@ -1,12 +1,19 @@
-const PostComment = require("../models/code-comments.model");
+const PostComment = require("../models/post-comments.model");
+const JWT_SECRET = process.env.JWT_SECRET;
+const jwt = require("jsonwebtoken");
 
 module.exports = {
-  postComment: (req, res) => {
+  addPostComment: (req, res) => {
+    const { token } = req.cookies;
+    const user = jwt.verify(token, JWT_SECRET);
+    const id = user.id;
+    const { post_id } = req.params;
+
     let comment = new PostComment({
-      author: req.body.author,
       body: req.body.body,
-      created_at: req.body.created_at,
       votes: req.body.votes,
+      user: id,
+      post: post_id
     });
     comment
       .save()
@@ -17,4 +24,31 @@ module.exports = {
         res.json({ status: 400, result: err });
       });
   },
+
+  getPostComments: (req, res) => {
+    PostComment.aggregate(
+      [
+        {
+          $lookup: {
+            from: "posts",
+            localField: "post",
+            foreignField: "_id",
+            as: "post"
+          }
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "user",
+            foreignField: "_id",
+            as: "post_author"
+          }
+        }
+      ], (err, result) => {
+        if(err) res.json({status: 500, result: "Internal server error!"})
+        res.json({status: 200, result: result});
+      }
+    );
+  }
 };
+

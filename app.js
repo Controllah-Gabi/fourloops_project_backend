@@ -3,6 +3,8 @@ const { postUser } = require("./controllers/signUp.controller");
 const { signin } = require("./controllers/signIn.controller");
 const { signout } = require("./controllers/signout.controller");
 const {changePassword} = require("./controllers/change-password.controller");
+const { addCodeComment, getCodeComments } = require("./controllers/code-comment.controller");
+const { addPostComment, getPostComments } = require("./controllers/post-comment.controller");
 const express = require("express");
 const {
   addPost,
@@ -30,12 +32,16 @@ app.post("/api/signout", signout);
 app.post("/api/change-password", changePassword);
 app.post("/api/posts", addPost);
 app.post("/api/codes", postCode);
+app.post("/api/codes/:code_id/comments", addCodeComment);
+app.post("/api/posts/:post_id/comments", addPostComment);
 
 //get
 app.get("/api/posts", getAllPosts);
 app.get("/api/codes", getAllCodes);
 app.get("/api/posts/:post_id", getPostByID);
 app.get("/api/codes/:code_id", getCodeByID);
+app.get("/api/codes/:code_id/comments", getCodeComments);
+app.get("/api/posts/:post_id/comments", getPostComments);
 
 //delete
 app.delete("/api/posts/:post_id", deletePost);
