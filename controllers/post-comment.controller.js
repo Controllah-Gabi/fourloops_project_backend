@@ -1,6 +1,7 @@
 const PostComment = require("../models/post-comments.model");
 const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 
 module.exports = {
   addPostComment: (req, res) => {
@@ -49,6 +50,18 @@ module.exports = {
         res.json({status: 200, result: result});
       }
     );
-  }
+  },
+
+  deletePostComment: (req, res) => {
+    const { comment_id } = req.params;
+    PostComment.findByIdAndDelete({ _id: comment_id })
+      .then(result => {
+        if(!result) res.json({status: 404, result: "Comment not found!"})
+        res.json({status: 200, result: null});
+      })
+      .catch(err => {
+        res.json({status: 400, result: err});
+      });
+  }, 
 };
 

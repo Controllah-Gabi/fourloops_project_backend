@@ -4,7 +4,7 @@ const { signin } = require("./controllers/signIn.controller");
 const { signout } = require("./controllers/signout.controller");
 const {changePassword} = require("./controllers/change-password.controller");
 const { addCodeComment, getCodeComments } = require("./controllers/code-comment.controller");
-const { addPostComment, getPostComments } = require("./controllers/post-comment.controller");
+const { addPostComment, getPostComments, deletePostComment } = require("./controllers/post-comment.controller");
 
 const { addPost, getAllPosts, getPostByID, deletePost } = require("./controllers/postController");
 const { postCode, getAllCodes, getCodeByID, deleteCode } = require("./controllers/codeController");
@@ -37,9 +37,12 @@ app.get("/api/codes/:code_id", getCodeByID);
 app.get("/api/codes/:code_id/comments", getCodeComments);
 app.get("/api/posts/:post_id/comments", getPostComments);
 
-//delete
+//delete post/code
 app.delete("/api/posts/:post_id", deletePost);
 app.delete("/api/codes/:code_id", deleteCode);
+
+//delete a code/post comment
+app.delete("/api/post-comments/:comment_id", deletePostComment);
 
 //patch
 
