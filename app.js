@@ -5,25 +5,19 @@ const { signout } = require("./controllers/signout.controller");
 const {changePassword} = require("./controllers/change-password.controller");
 const { addCodeComment, getCodeComments } = require("./controllers/code-comment.controller");
 const { addPostComment, getPostComments } = require("./controllers/post-comment.controller");
+
+const { addPost, getAllPosts, getPostByID, deletePost } = require("./controllers/postController");
+const { postCode, getAllCodes, getCodeByID, deleteCode } = require("./controllers/codeController");
+
 const express = require("express");
-const {
-  addPost,
-  getAllPosts,
-  getPostByID,
-  deletePost,
-} = require("./controllers/postController");
-const {
-  postCode,
-  getAllCodes,
-  getCodeByID,
-  deleteCode,
-} = require("./controllers/codeController");
 const app = express();
+const cors = require("cors");
 
 //Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 //post
 app.post("/api/register-user", postUser);
