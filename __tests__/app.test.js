@@ -16,7 +16,7 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe.only(" POST /api/register-user", () => {
+describe(" POST /api/register-user", () => {
   test("POST: 201 - returns an object containing the new user", async () => {
     const newUser = {
       firstname: "Joel",
