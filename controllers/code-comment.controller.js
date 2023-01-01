@@ -49,5 +49,17 @@ module.exports = {
         res.json({status: 200, result: result});
       }
     );
-  }
+  },
+
+  deleteCodeComment: (req, res) => {
+    const { comment_id } = req.params;
+    CodeComment.findByIdAndDelete({ _id: comment_id })
+      .then(result => {
+        if(!result) res.json({status: 404, result: "Comment not found!"})
+        res.json({status: 200, result: null});
+      })
+      .catch(err => {
+        res.json({status: 400, result: err});
+      });
+  }, 
 };
