@@ -70,12 +70,13 @@ module.exports = {
 
   // DELETE A SINGLE CODE
   deleteCode: (req, res) => {
+    const { code_id } = req.params;
     Code
-      .findOneAndDelete({ code_id: req.params.code_id })
+      .findOneAndDelete({ code_id: code_id })
       .then((result) => {
-        if (!result) res.json({ success: false, result: "No results found" });
-        res.json({ success: true, result: null });
+        if (!result) res.json({ status: 404, result: "No results found" });
+        res.json({ status: 200, result: null });
       })
-      .catch((err) => res.json({ success: false, result: err }));
+      .catch((err) => res.json({ status: 400, result: err }));
   },
 };
