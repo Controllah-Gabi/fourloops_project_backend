@@ -79,4 +79,17 @@ module.exports = {
       })
       .catch((err) => res.json({ status: 400, result: err }));
   },
+
+  updateCode: (req, res) => {
+    const { code_id } = req.params;
+    Code.updateOne(
+      { code_id: code_id },
+      { $inc: { likes: 1 }}, (err, result) => {
+        if(err) {
+          res.json({status: 400, result: err});
+        };
+        res.json({status: 200, result: result});
+      }
+    );
+  },
 };
