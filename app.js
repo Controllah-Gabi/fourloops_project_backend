@@ -48,7 +48,7 @@ app.delete("/api/code-comments/:comment_id", deleteCodeComment)
 //patch
 app.patch("/api/posts/:post_id", updatePost);
 app.patch("/api/codes/:code_id", updateCode)
-// app.patch("/api/post-comments/:comment_id", updatePostComment)
-// app.patch("/api/code-comments/:comment_id", updateCodeComment)
+app.patch("/api/post-comments/:comment_id", updatePostComment)
+app.patch("/api/code-comments/:comment_id", updateCodeComment)
 
 module.exports = app;

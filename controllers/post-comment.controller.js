@@ -1,7 +1,6 @@
 const PostComment = require("../models/post-comments.model");
 const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
 
 module.exports = {
   addPostComment: (req, res) => {
@@ -62,6 +61,19 @@ module.exports = {
       .catch(err => {
         res.json({status: 400, result: err});
       });
-  }, 
+  },
+
+  updatePostComment: (req, res) => {
+    const { comment_id } = req.params;
+    PostComment.updateOne(
+      { comment_id: comment_id },
+      { $inc: { votes: 1 }}, (err, result) => {
+        if(err) {
+          res.json({status: 400, result: err});
+        };
+        res.json({status: 200, result: result});
+      }
+    );
+  },
 };
 

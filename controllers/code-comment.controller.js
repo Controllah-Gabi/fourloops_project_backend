@@ -61,5 +61,18 @@ module.exports = {
       .catch(err => {
         res.json({status: 400, result: err});
       });
-  }, 
+  },
+
+  updateCodeComment: (req, res) => {
+    const { comment_id } = req.params;
+    CodeComment.updateOne(
+      { comment_id: comment_id },
+      { $inc: { votes: 1 }}, (err, result) => {
+        if(err) {
+          res.json({status: 400, result: err});
+        };
+        res.json({status: 200, result: result});
+      }
+    );
+  },
 };
