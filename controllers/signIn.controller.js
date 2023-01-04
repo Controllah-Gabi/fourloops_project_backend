@@ -23,7 +23,7 @@ module.exports = {
 
         res.cookie('token', token, {expire: new Date(Date.now() + 900000), httpOnly: true});
 
-        return res.json({status: 'ok', result: user.firstname})
+        return res.json({status: 200, result: `Welcome back ${user.firstname}`});
     }
     res.json({status: 'error', result: "Invalid Email/Password!"})
   }
