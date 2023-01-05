@@ -11,10 +11,6 @@ module.exports = {
     const { email, password } = req.body;
     const user = await User.findOne({ email }).lean();
 
-    if(!user) {
-        return res.json({status: 404, result: "Invalid email/password! SignUp for an account..."});
-    }
-
     if(await bycrypt.compare(password, user.password)) {
         const token = jwt.sign({
             id: user._id,
@@ -25,6 +21,11 @@ module.exports = {
 
         return res.json({status: 200, result: `Welcome back ${user.firstname}`});
     }
+    
+     if(!user) {
+        return res.json({status: 404, result: "Invalid email/password! SignUp for an account..."});
+    }
+    
     res.json({status: 'error', result: "Invalid Email/Password!"})
   }
 };
